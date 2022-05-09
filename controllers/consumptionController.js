@@ -59,10 +59,10 @@ const createConsumption = (req, res, next) => {
     let pngrate = req.body.pngrate;
     let solargeneration = req.body.solargeneration;
     for (let i = 0; i < generator.length; i++) {
-        generation += generator[i].generation;
-        dieselconsumption += generator[i].dieselconsumption;
+        
+        generation += Number(generator[i].generation);
+        dieselconsumption += Number(generator[i].dieselconsumption);
         timeArray.push(generator[i].timerun);
-
     }
     outputTime = locationTotalTime(location, timeArray);
 
@@ -82,7 +82,7 @@ const createConsumption = (req, res, next) => {
 }
 
 const getConsumptionByLocationDate = (req, res, next) => {
-    Consumption.findOne({date: req.params.date, location: req.params.location})
+    Consumption.findOne({ date: req.params.date, location: req.params.location })
         .then((consume) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -91,7 +91,18 @@ const getConsumptionByLocationDate = (req, res, next) => {
         .catch((err) => next(err));
 }
 
+const showAllConsumption = (req, res, next) => {
+    Consumption.find({})
+        .then((all) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(all);
+        }, (err) => next(err))
+        .catch((err) => next(err));
+}
+
 module.exports = {
     createConsumption,
-    getConsumptionByLocationDate
+    getConsumptionByLocationDate,
+    showAllConsumption
 }
