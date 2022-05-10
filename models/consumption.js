@@ -1,5 +1,12 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
+let date = new Date();
+let hours = date.getHours();
+let hour = hours > 12 ? 24 - hours : hours;
+let minutes = date.getMinutes();
+let seconds = date.getSeconds();
+let hms = `${hour}:${minutes}:${seconds}`
+console.log(hour, minutes, seconds);
 let consumptionSchema = new Schema({
     location: {
         type: String,
@@ -7,18 +14,22 @@ let consumptionSchema = new Schema({
         required: true
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     timeofrecording: {
-        type: Date,
-        default: Date.now()
+        type: String,
+        default: hms
     },
     keb: {
         type: Number,
         required: true
     },
     generator: [{
+        generatorname: {
+            type: String,
+            required: true
+        },
         capacity: {
             type: Number,
             required: true

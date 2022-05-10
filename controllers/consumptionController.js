@@ -67,6 +67,8 @@ const createConsumption = (req, res, next) => {
     outputTime = locationTotalTime(location, timeArray);
 
     total.push({
+        "space":"",
+        "total": "Total",
         "totalGeneration": generation,
         "totalTimeRun": outputTime,
         "dieselConsumption": dieselconsumption
