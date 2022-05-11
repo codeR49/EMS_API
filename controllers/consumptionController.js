@@ -94,7 +94,7 @@ const getConsumptionByLocationDate = (req, res, next) => {
 const getConsumptionBetweenDatesLocation = (req, res, next) => {
 
     Consumption.find({ location: req.params.location, date: { $gte: req.params.datefrom, $lte: req.params.dateto } })
-        .sort({date: 1})
+        .sort({ date: 1 })
         .then((consume) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -105,6 +105,7 @@ const getConsumptionBetweenDatesLocation = (req, res, next) => {
 
 const showAllConsumption = (req, res, next) => {
     Consumption.find({})
+        .sort({ date: 1 })
         .then((all) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
