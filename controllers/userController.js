@@ -16,7 +16,8 @@ const registerUser = (req, res) => {
 
   Users.register(new Users({
     username: req.body.username,
-    name: req.body.name, email: req.body.email
+    name: req.body.name, email: req.body.email,
+    designation: req.body.designation
   }),
     req.body.password, (err, user) => {
       if (err) {
@@ -37,8 +38,9 @@ const registerUser = (req, res) => {
 const loginUser = (req, res) => {
   var token = authenticate.getToken({
     _id: req.user._id,
-    // name: req.user.name,
-    admin: req.user.admin
+    name: req.user.name,
+    admin: req.user.admin,
+    designation: req.user.designation
     // username: req.user.username,
     // email: req.user.email
   });

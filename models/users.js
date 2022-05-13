@@ -9,6 +9,14 @@ var userSchema = new Schema({
         required: true,
         unique: true
     },
+    name: {
+        type: String,
+        required: true,
+    },
+    designation: {
+        type: String,
+        required: true
+    },
     admin: {
         type: Boolean,
         default: false
