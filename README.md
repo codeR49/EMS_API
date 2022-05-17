@@ -1,1 +1,0 @@
-[![CircleCI](https://circleci.com/gh/codeR49/EMS_API/tree/main.svg?style=svg)](https://circleci.com/gh/codeR49/EMS_API/tree/main)
