@@ -122,9 +122,35 @@ const showAllConsumption = (req, res, next) => {
         .catch((err) => next(err));
 }
 
+const approveDisapproveConsumption = (req, res, next) => {
+
+    Consumption.findByIdAndUpdate(req.params.id, 
+        { $set: { status: req.body.status }})
+        .then((status) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(status);
+        }, (err) => next(err))
+        .catch((err) => next(err));
+}
+
+const showapproveConsumption = (req, res, next) => {
+
+    Consumption.find({status: true})
+        .sort({ date: 1 })
+        .then((status) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(status);
+        }, (err) => next(err))
+        .catch((err) => next(err));
+}
+
 module.exports = {
     createConsumption,
     getConsumptionByLocationDate,
     showAllConsumption,
-    getConsumptionBetweenDatesLocation
+    getConsumptionBetweenDatesLocation,
+    approveDisapproveConsumption,
+    showapproveConsumption
 }

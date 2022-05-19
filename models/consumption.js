@@ -86,6 +86,10 @@ let consumptionSchema = new Schema({
     solargeneration: {
         type: Number,
         required: true
+    },
+    status: {
+        type: Boolean,
+        default: false
     }
 
 }

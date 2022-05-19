@@ -17,7 +17,7 @@ const registerUser = (req, res) => {
   Users.register(new Users({
     username: req.body.username,
     name: req.body.name, email: req.body.email,
-    designation: req.body.designation
+    roles: req.body.roles, location: req.body.location
   }),
     req.body.password, (err, user) => {
       if (err) {
@@ -39,10 +39,8 @@ const loginUser = (req, res) => {
   var token = authenticate.getToken({
     _id: req.user._id,
     name: req.user.name,
-    admin: req.user.admin,
-    designation: req.user.designation
-    // username: req.user.username,
-    // email: req.user.email
+    roles: req.user.roles,
+    location: req.user.location
   });
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');

@@ -6,7 +6,7 @@ const userController = require("../controllers/userController");
 userRouter.use(express.json());
 
 /* GET users listing. */
-userRouter.get('/', authenticate.verifyUser, authenticate.verifyAdmin, userController.getAllUsers);
+userRouter.get('/', authenticate.verifyUser, authenticate.verifyDirector, userController.getAllUsers);
 /* Register user */
 userRouter.post('/signup', userController.registerUser);
 /* Login user */

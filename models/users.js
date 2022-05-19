@@ -13,13 +13,14 @@ var userSchema = new Schema({
         type: String,
         required: true,
     },
-    designation: {
+    roles: {
         type: String,
+        enum: ["Remote Engineer", "General Manager", "Director"],
         required: true
     },
-    admin: {
-        type: Boolean,
-        default: false
+    location: {
+        type: String,
+        enum: ["Coorg", "Hampi", "Kabini"]
     }
 }, {
     writeConcern: {
