@@ -1,10 +1,5 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let date = new Date();
-let hours = date.getHours();
-let minutes = date.getMinutes();
-let seconds = date.getSeconds();
-let hms = `${hours}:${minutes}:${seconds}`
 
 let consumptionSchema = new Schema({
     location: {
@@ -18,7 +13,7 @@ let consumptionSchema = new Schema({
     },
     timeofrecording: {
         type: String,
-        default: hms
+        required: true
     },
     keb: {
         type: Number,

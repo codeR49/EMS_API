@@ -41,23 +41,31 @@ const locationTotalTime = (location, timeArray) => {
 }
 
 const createConsumption = (req, res, next) => {
-    let location = req.body.location;
-    let date = req.body.date;
-    let keb = req.body.keb;
-    let generator = req.body.generator;
+
+    const dateNow = new Date();
+    const hours = dateNow.getHours();
+    const minutes = dateNow.getMinutes();
+    const seconds = dateNow.getSeconds();
+    const hms = `${hours}:${minutes}:${seconds}`
+
+    const location = req.body.location;
+    const date = req.body.date;
+    const timeofrecording = hms;
+    const keb = req.body.keb;
+    const generator = req.body.generator;
     let total = [];
     let generation = 0, timeArray = [], dieselconsumption = 0, outputTime;
     // console.log(generator);
-    let kitchenpng = req.body.kitchenpng;
-    let waterconsumption = req.body.waterconsumption;
-    let weathermin = req.body.weathermin;
-    let weathermax = req.body.weathermax;
-    let humidity = req.body.humidity;
-    let kebrate = req.body.kebrate;
-    let fuelrate = req.body.fuelrate;
-    let waterrate = req.body.waterrate;
-    let pngrate = req.body.pngrate;
-    let solargeneration = req.body.solargeneration;
+    const kitchenpng = req.body.kitchenpng;
+    const waterconsumption = req.body.waterconsumption;
+    const weathermin = req.body.weathermin;
+    const weathermax = req.body.weathermax;
+    const humidity = req.body.humidity;
+    const kebrate = req.body.kebrate;
+    const fuelrate = req.body.fuelrate;
+    const waterrate = req.body.waterrate;
+    const pngrate = req.body.pngrate;
+    const solargeneration = req.body.solargeneration;
     for (let i = 0; i < generator.length; i++) {
 
         generation += Number(generator[i].generation);
@@ -71,7 +79,7 @@ const createConsumption = (req, res, next) => {
         "totalTimeRun": outputTime,
         "dieselConsumption": dieselconsumption
     })
-    Consumption.create({ location, date, keb, generator, kitchenpng, total, waterconsumption, weathermin, weathermax, humidity, kebrate, fuelrate, waterrate, pngrate, solargeneration })
+    Consumption.create({ location, date, timeofrecording, keb, generator, kitchenpng, total, waterconsumption, weathermin, weathermax, humidity, kebrate, fuelrate, waterrate, pngrate, solargeneration })
         .then((consume) => {
             // console.log('Comsumption created', timeArray);
             res.statusCode = 200;
