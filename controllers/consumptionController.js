@@ -125,7 +125,7 @@ const showAllConsumption = (req, res, next) => {
 const approveDisapproveConsumption = (req, res, next) => {
 
     Consumption.findByIdAndUpdate(req.params.id, 
-        { $set: { status: req.body.status }})
+        { $set: { status: req.body.status, remark: req.body.remark }, new: true})
         .then((status) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');

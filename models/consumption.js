@@ -90,6 +90,10 @@ let consumptionSchema = new Schema({
     status: {
         type: Boolean,
         default: false
+    },
+    remark: {
+        type: String,
+        default: ''
     }
 
 }
