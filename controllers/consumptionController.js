@@ -41,12 +41,15 @@ const locationTotalTime = (location, timeArray) => {
 }
 
 const createConsumption = (req, res, next) => {
-
+   
     const dateNow = new Date();
-    const hours = dateNow.getHours();
-    const minutes = dateNow.getMinutes();
-    const seconds = dateNow.getSeconds();
-    const hms = `${hours}:${minutes}:${seconds}`
+    let hours = dateNow.getHours();
+    let minutes = dateNow.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const hms =  hours + ':' + minutes + ' ' + ampm;
 
     const location = req.body.location;
     const date = req.body.date;
@@ -124,8 +127,8 @@ const showAllConsumption = (req, res, next) => {
 
 const approveDisapproveConsumption = (req, res, next) => {
 
-    Consumption.findByIdAndUpdate(req.params.id, 
-        { $set: { status: req.body.status, remark: req.body.remark }, new: true})
+    Consumption.findByIdAndUpdate(req.params.id,
+        { $set: { status: req.body.status, remark: req.body.remark }, new: true })
         .then((status) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
@@ -136,7 +139,7 @@ const approveDisapproveConsumption = (req, res, next) => {
 
 const showapproveConsumption = (req, res, next) => {
 
-    Consumption.find({status: true})
+    Consumption.find({ status: true })
         .sort({ date: 1 })
         .then((status) => {
             res.statusCode = 200;
