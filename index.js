@@ -6,7 +6,6 @@ const logger = require('morgan');
 
 const userRoutes = require('./routes/users-routes');
 const consumeRoutes = require('./routes/consumption-routes');
-const previousYearRoutes = require('./routes/previous-year-data-routes');
 
 const port = process.env.PORT || 8080;
 require('./db/database')();
