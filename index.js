@@ -20,6 +20,5 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', userRoutes);
 app.use('/consume', consumeRoutes);
-app.use('/previousyear', previousYearRoutes);
 
 app.listen(port, () => console.log(`server is listening on url http://localhost:${port}`));
