@@ -1,13 +1,14 @@
 require('dotenv').config()
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+// const localStrategy = require('passport-local').Strategy;
 const User = require('../models/users');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const config = process.env.SECRET_KEY;
 
-passport.use(new localStrategy(User.authenticate()));
+// passport.use(new localStrategy(User.authenticate()));
+passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
