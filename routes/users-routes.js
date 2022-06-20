@@ -15,4 +15,7 @@ userRouter.post('/login', passport.authenticate('local'), userController.loginUs
 /* Edit user details*/
 userRouter.put('/edit/:userId', authenticate.verifyUser, userController.editUser);
 
+/* Edit password */
+userRouter.put('/editpassword/:userId', authenticate.verifyUser, userController.editPassword);
+
 module.exports = userRouter;
