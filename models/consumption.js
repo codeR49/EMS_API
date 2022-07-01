@@ -37,7 +37,7 @@ let consumptionSchema = new Schema({
             required: true
         },
         dieselconsumption: {
-            type: Schema.Types.Decimal128,
+            type: Number,
             required: true
         }
 

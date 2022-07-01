@@ -37,7 +37,7 @@ const locationTotalTime = (location, timeArray) => {
     }
 
     return outputTime;
-    // console.log('sum of above time= ' + hour + ':' + minute);
+
 }
 
 const createConsumption = (req, res, next) => {
@@ -58,7 +58,7 @@ const createConsumption = (req, res, next) => {
     const generator = req.body.generator;
     let total = [];
     let generation = 0, timeArray = [], dieselconsumption = 0, outputTime;
-    // console.log(generator);
+
     const kitchenpng = req.body.kitchenpng;
     const waterconsumption = req.body.waterconsumption;
     const weathermin = req.body.weathermin;
@@ -70,9 +70,9 @@ const createConsumption = (req, res, next) => {
     const pngrate = req.body.pngrate;
     const solargeneration = req.body.solargeneration;
     for (let i = 0; i < generator.length; i++) {
-
-        generation += Number(generator[i].generation);
-        dieselconsumption += Number(generator[i].dieselconsumption);
+        
+        generation += parseFloat(generator[i].generation);
+        dieselconsumption += parseFloat(generator[i].dieselconsumption);
         timeArray.push(generator[i].timerun);
     }
     outputTime = locationTotalTime(location, timeArray);
